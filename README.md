@@ -53,9 +53,9 @@ python tests/init_tests.py -I INPUT_FOLDER -H HYDROWEB_AUTH
 
 You then can run the converters tests:
 ```
-pytest
+pytest pixcdust/tests --realdata
 ```
 You can also run all the tests including the downloaders tests with:
 ```
-pytest --dl
+pytest pixcdust/tests --realdata --dl
 ```

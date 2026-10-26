@@ -7,7 +7,7 @@ pixcdust documentation
 ======================
 
 🎩 🪄 A Pinch of PixC Dust 🐇
-----------------------------
+-----------------------------
 
 This python project centralizes librairies to facilitate local studies based on SWOT-HR Level-2 Pixel Cloud products.
 
@@ -34,9 +34,9 @@ Start here to understand what you can do: :doc:`tutorials`.
 ----------------
 The downloader classes allow you to directly download SWOT Pixel Cloud files from hydroweb.next (or other sources such as PO.DAAC to be implemented).
 For hydroweb.next, it requires you to create an account and an API Key (token) from the platform: https://hydroweb.next.theia-land.fr.
-Then, carefully store your API-Key either :
-  *  in your eodag configuration file (usually `~/.config/eodag/eodag.yml`, automatically generated the first time you use eodag) in ``auth/credentials/apikey="PLEASE_CHANGE_ME"``
-  * in an environment variable ``export EODAG__HYDROWEB_NEXT__AUTH__CREDENTIALS__APIKEY="PLEASE_CHANGE_ME"``
+Then, carefully store your API-Key either
+  * in your eodag configuration file: (usually `~/.config/eodag/eodag.yml`, automatically generated the first time you use eodag) in ``auth/credentials/apikey="PLEASE_CHANGE_ME"``
+  * in an environment variable: ``export EODAG__HYDROWEB_NEXT__AUTH__CREDENTIALS__APIKEY="PLEASE_CHANGE_ME"``
 
 🪄 *Converters*
 ---------------
@@ -56,11 +56,11 @@ Here are some python script implementing the classes.
 🔶 *Discrete Global Grid System (experimental)*
 -----------------------------------------------
 
-I enjoy DDGS a lot. It is pretty great if you want to perform on-the-fly "rasterization", partitionning, comparing pixels over time or space, etc.
+I enjoy DGGS a lot. It is pretty great if you want to perform on-the-fly "rasterization", partitionning, comparing pixels over time or space, etc.
 Currently H3 and HEALPix are implemented.
 
 ✅ *Tests*
----------
+----------
 You first need to configure the tests and download the tests data with init_tests.py. We recommend setting the following options:
   * INPUT_FOLDER is where the tests data will be downloaded (or are already available).
   * HYDROWEB_AUTH is your hydroweb.next API key. It is required to automatically download the tests data or run the downloaders tests.
@@ -68,11 +68,11 @@ You first need to configure the tests and download the tests data with init_test
 ``python tests/init_tests.py -I INPUT_FOLDER -H HYDROWEB_AUTH``
 
 You then can run the converters tests:
-``pytest``
+``pytest pixcdust/tests --realdata``
 
 
 You can also run all the tests including the downloaders tests with:
-``pytest --dl``
+``pytest pixcdust/tests --realdata --dl``
 
 
 .. toctree::
