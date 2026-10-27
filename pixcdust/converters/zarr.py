@@ -26,13 +26,14 @@ import dask.utils
 import fsspec
 import geopandas as gpd
 import pandas
-            
+
 from pixcdust.converters.core import Converter
 from pixcdust.readers.netcdf import NcSimpleConstants, NcSimpleReader
 
 TIME_VARNAME = "time"
 # TODO is there a better solution than fix the chunk size here ?
 CHUNK_SIZE = dask.utils.parse_bytes("2MiB")
+
 
 class Nc2ZarrConverter(Converter):
     """Converter from official SWOT Pixel Cloud Netcdf to Shapefile database
@@ -87,7 +88,7 @@ class Nc2ZarrConverter(Converter):
 
         path_out = Path(path_out)
         append = path_out.exists()
-        
+
         with (
             dask.distributed.LocalCluster(processes=True) as cluster,
             dask.distributed.Client(cluster) as _,
@@ -110,7 +111,6 @@ class Nc2ZarrConverter(Converter):
 
             time = xr_ds_xarray["time"].values
 
-
             time2 = pandas.DatetimeIndex(time).tz_localize(None).to_numpy()
             xr_ds_xarray = xr_ds_xarray.assign_coords(time=("points", time2))
 
@@ -119,9 +119,7 @@ class Nc2ZarrConverter(Converter):
             if npoints:
                 bytes_per_point = max(1, xr_ds_xarray.nbytes // npoints)
                 chunk_points = max(1, CHUNK_SIZE // bytes_per_point)
-                xr_ds_xarray = xr_ds_xarray.chunk(
-                    {"points": int(chunk_points)}
-                )
+                xr_ds_xarray = xr_ds_xarray.chunk({"points": int(chunk_points)})
 
             if append:
                 xr_ds_xarray.to_zarr(
@@ -138,6 +136,3 @@ class Nc2ZarrConverter(Converter):
                     consolidated=True,
                     zarr_version=2,
                 )
-
-            #xr_ds.close()
-            

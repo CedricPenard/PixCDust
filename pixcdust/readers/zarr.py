@@ -57,8 +57,7 @@ class ZarrReader(BaseReader):
         if date_interval is not None:
             date_min = date_interval[0]
             date_max = date_interval[1]
-            
-            
+
             if "time" not in self.data:
                 self.data.close()
                 self.data = xr.Dataset()
@@ -75,19 +74,10 @@ class ZarrReader(BaseReader):
             if date_max.tzinfo is not None:
                 date_max = date_max.astimezone().replace(tzinfo=None)
             
-            date_min = np.datetime64(
-                date_min.replace(tzinfo=None), "ns"
-            )
-            date_max = np.datetime64(
-                date_max.replace(tzinfo=None), "ns"
-            )
+            date_min = np.datetime64(date_min.replace(tzinfo=None), "ns")
+            date_max = np.datetime64(date_max.replace(tzinfo=None), "ns")
 
-            mask = (
-                (self.data["time"] >= date_min)
-                & (self.data["time"] <= date_max)
-            )
+            mask = (self.data["time"] >= date_min) & (self.data["time"] <= date_max)
             mask = mask.compute()
 
             self.data = self.data.isel(points=mask)
-            
-            
