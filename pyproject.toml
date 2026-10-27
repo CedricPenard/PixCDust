@@ -33,7 +33,7 @@ dependencies = [
     "scipy>=1.18.0,<2.0.0",
     "earthaccess>=0.19.0",
     "zarr>=2.18,<3",
-    "dsitributed>=2026.8",
+    "distributed>=2026.8",
 ]
 
 [project.urls]
