@@ -29,7 +29,7 @@ Then, carefully store your API-Key :
 
 ## 🪄 *Converters* 
 The converter classes allow you to create more easy-to-use databases than the original netcdf4 format. The various databases are designed for **local** studies, not for huge country-scale databases (though it should work, they will not be efficient).  
-Zarr (with zcollection), geopackage and shapefile are currently supported.  
+Zarr, geopackage and shapefile are currently supported.  
 The converters allow you to limit the databases to areas of interest (provided by polygons) and variables of interest (limitated to the pixel_cloud group mono-dimensional variables).  
 Users are encouraged to limit the number of variables to what is useful, especially for geopackage format, but also for the planet ;)
 
