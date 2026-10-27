@@ -73,7 +73,7 @@ class ZarrReader(BaseReader):
 
             if date_max.tzinfo is not None:
                 date_max = date_max.astimezone().replace(tzinfo=None)
-            
+
             date_min = np.datetime64(date_min.replace(tzinfo=None), "ns")
             date_max = np.datetime64(date_max.replace(tzinfo=None), "ns")
 
