@@ -26,7 +26,6 @@ import dask.utils
 import fsspec
 import geopandas as gpd
 import pandas
-import xarray
             
 from pixcdust.converters.core import Converter
 from pixcdust.readers.netcdf import NcSimpleConstants, NcSimpleReader

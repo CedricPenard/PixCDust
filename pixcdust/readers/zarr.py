@@ -17,8 +17,8 @@
 
 import datetime
 
-import xarray as xr
 import numpy as np
+import xarray as xr
 
 from pixcdust.readers.base_reader import BaseReader
 
